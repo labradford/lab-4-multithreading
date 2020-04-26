@@ -14,8 +14,8 @@ namespace Lab03
 		/// <returns>Approximate number of primes</returns>
 		public static ulong ApproximateNumberOfPrimes(ulong x)
 		{
-			// TODO:
-			return default(ulong);
+			double num = ((double)x / (Math.Log((double)x, Math.E) - 1)) * 1.05;
+			return (ulong)num;
 		}
 
 
@@ -26,7 +26,37 @@ namespace Lab03
 		/// <returns>true if prime, false otherwise</returns>
 		public static bool IsPrime(ulong number)
 		{
-			// TODO:
+			if (number<= 1)
+			{
+				return false;
+			}
+			if (number == 2 || number == 3 || number == 5)
+			{
+				return true;
+			}
+			if ((number & 1) == 0)
+			{
+				return false;
+			}
+			if (number % 5 == 0) 
+			{
+				return false; 
+			}
+			ulong max = (uint)Math.Sqrt(number);
+			int counter = 3;
+			for (ulong i = 3; i <= max; i += 2)
+			{
+				if (counter == 4)
+				{
+					counter = 0;
+					continue;
+				}
+				counter++;
+				if (number % i == 0)
+				{
+					return false;
+				}
+			}
 			return true;
 		}
 	}
